@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -42,6 +41,7 @@ class MainApp extends StatelessWidget {
     );
   }
 }
+
 Future<Position> _checkLocationPermission() async {
   bool serviceEnabled;
   LocationPermission permission;
@@ -57,7 +57,6 @@ Future<Position> _checkLocationPermission() async {
       return Future.error('Location permissions are denied');
     }
   }
-  print(Geolocator.getCurrentPosition());
   return await Geolocator.getCurrentPosition();
 }
 

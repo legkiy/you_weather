@@ -14,3 +14,5 @@ class FetchWeather extends WeatherBlocEvent {
   @override
   List<Object> get props => [position];
 }
+
+class UpdateWeather extends WeatherBlocEvent {}

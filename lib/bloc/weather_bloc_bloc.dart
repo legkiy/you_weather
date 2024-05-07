@@ -20,5 +20,19 @@ class WeatherBlocBloc extends Bloc<WeatherBlocEvent, WeatherBlocState> {
         emit(WeatherBlocFailure());
       }
     });
+
+    on<UpdateWeather>((event, emit) async {
+      emit(WeatherBlocLoading());
+      try {
+        Position position = await Geolocator.getCurrentPosition();
+        WeatherFactory wf = WeatherFactory(API_KEY, language: Language.RUSSIAN);
+        Weather weather = await wf.currentWeatherByLocation(
+            position.latitude, position.longitude);
+        print(weather.date);
+        emit(WeatherBlocSuccess(weather));
+      } catch (e) {
+        emit(WeatherBlocFailure());
+      }
+    });
   }
 }
